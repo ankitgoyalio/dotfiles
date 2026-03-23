@@ -1,11 +1,30 @@
 # Dotfiles
 
-This repository contains shell-related configuration files that can be installed individually from GitHub.
+This repository contains terminal and shell-related configuration files that can be applied individually.
 
+- [ghostty/config.ghostty](ghostty/config.ghostty): Ghostty terminal config with custom font settings, Catppuccin themes, translucent macOS window styling, shell integration, and custom keybindings.
 - [fish/config.fish](fish/config.fish): Fish shell startup config that initializes Starship, adds Bun to `PATH`, defines a few Bun-based aliases, and appends an Obsidian app binary path to `PATH`.
 - [starship.toml](starship.toml): a custom [Starship](https://starship.rs/) prompt with a gruvbox-style palette, OS and user segments, Git status, language runtimes, Docker/Conda/Pixi context, and a clock.
 
 ## Files
+
+### `ghostty/config.ghostty`
+
+This Ghostty config does the following:
+
+- Sets `Monaspace Neon NF` as the terminal font with a medium style and larger cell height
+- Uses Catppuccin Latte for light mode and Catppuccin Mocha for dark mode
+- Enables mouse hide while typing
+- Applies translucent macOS window styling with blur and a transparent title bar
+- Enables shell integration features for SSH terminfo
+- Checks for Ghostty updates automatically
+- Adds custom keybindings for `alt+backspace` and `super+enter`
+
+Expected install location:
+
+```sh
+~/.config/ghostty/config
+```
 
 ### `fish/config.fish`
 
@@ -52,12 +71,20 @@ Expected install location:
 
 Install these first if you want the full setup to work:
 
+- [Ghostty](https://ghostty.org/)
 - [Fish shell](https://fishshell.com/)
 - [Starship](https://starship.rs/)
 - [Bun](https://bun.sh/) for the Bun-related aliases
 - Obsidian for the Obsidian `PATH` entry
 
 ## Install
+
+Download the Ghostty config:
+
+```sh
+mkdir -p ~/.config/ghostty && \
+curl -fsSL https://raw.githubusercontent.com/ankitgoyalio/dotfiles/main/ghostty/config.ghostty -o ~/.config/ghostty/config.ghostty
+```
 
 Download the Fish config:
 
@@ -76,6 +103,10 @@ curl -fsSL https://raw.githubusercontent.com/ankitgoyalio/dotfiles/main/starship
 If you prefer `wget`, use the same per-file pattern:
 
 ```sh
+wget -qO ~/.config/ghostty/config https://raw.githubusercontent.com/ankitgoyalio/dotfiles/main/ghostty/config.ghostty
+```
+
+```sh
 wget -qO ~/.config/fish/config.fish https://raw.githubusercontent.com/ankitgoyalio/dotfiles/main/fish/config.fish
 ```
 
@@ -85,7 +116,7 @@ wget -qO ~/.config/starship.toml https://raw.githubusercontent.com/ankitgoyalio/
 
 ## Apply Changes
 
-After installing:
+Restart your Fish session to reload both `config.fish` and `starship.toml`:
 
 ```sh
 exec fish
@@ -97,8 +128,11 @@ Or reload only the Fish config inside an existing Fish session:
 source ~/.config/fish/config.fish
 ```
 
+Restart Ghostty to pick up changes to `~/.config/ghostty/config`.
+
 ## Notes
 
+- `ghostty/config.ghostty` uses macOS-oriented appearance settings and expects the `Monaspace Neon NF` font to be installed for the intended look.
 - `fish/config.fish` may contain machine-specific paths. If your local app install locations differ, update those lines after downloading.
 - The prompt uses Nerd Font glyphs. Install a Nerd Font if icons do not render correctly.
-- The install commands pull each file from the repository's `main` branch, so the same commands continue to work as these configs change over time.
+- The file install commands pull from the repository's `main` branch, so the same commands continue to work as those tracked configs change over time.
