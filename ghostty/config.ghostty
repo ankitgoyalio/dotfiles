@@ -17,6 +17,11 @@ shell-integration-features = ssh-terminfo
 # --- Update --- 
 auto-update = check
 
+# --- Window ---
+window-height = 30
+window-width = 100
+window-save-state = always
+
 # --- Custom Keybind ---
 keybind = alt+backspace=text:\x1b\x7f
 keybind = super+enter=ignore
